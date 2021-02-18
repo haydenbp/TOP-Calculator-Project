@@ -125,18 +125,17 @@ equalButton.addEventListener('click', ()=>{
 
     if(number !== null || numberTwo !== null){
 
-    
-
     let numberTwo = display.innerText
 
     console.log(operator,number,numberTwo);
 
-    if(operator == '/' && numberTwo != 0){
-
-    display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo)).toFixed(2)//`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
+    if(operator == '/' && numberTwo == 0){
+        alert('REEEE YOU CANT DIVIDE BY ZERO')
+    //`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
     }
     else{
-        alert('REEEE YOU CANT DIVIDE BY ZERO')
+        display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo)).toFixed(2)
+        
     }
     }
         
@@ -144,13 +143,70 @@ equalButton.addEventListener('click', ()=>{
 
 window.addEventListener("keydown", e => {
 
+    console.log(e.key)
+
+    let operatorString = '+-/*'
+
     if(parseInt(e.key) >= 0 && parseInt(e.key) <= 9){
 
         display.innerText += e.key;
     
-    console.log(parseInt(e.key))
+     console.log(parseInt(e.key))
 
     }
+
+    else if(operatorString.includes(e.key)){
+
+        console.log(e.key)
+
+        
+
+            operator = e.key
+            number = display.innerText
+            display.innerText = ''
+        
+    }
+
+    else if(e.key == 'Enter'){
+
+        if(number !== null || numberTwo !== null){
+
+            let numberTwo = display.innerText
+        
+            console.log(operator,number,numberTwo);
+        
+            if(operator == '/' && numberTwo == 0){
+                alert('REEEE YOU CANT DIVIDE BY ZERO')
+            //`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
+            }
+            else{
+                display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo)).toFixed(2)
+                
+            }
+            }
+
+
+    }
+
+
+    else if(e.key == 'c'){
+
+        number = null
+
+        numberTwo = null
+    
+        display.innerText = '';
+
+    }
+
+    else if(e.key =='Backspace'){
+
+        display.innerText = display.innerText.slice(0,-1)
+
+    }
+
+
+
 });
   
 
