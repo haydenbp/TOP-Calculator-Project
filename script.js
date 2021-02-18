@@ -72,6 +72,7 @@ let number = null;
 
 let displayText = null
 
+
 clearButton.addEventListener('click', ()=>{
 
     number = null
@@ -140,6 +141,18 @@ equalButton.addEventListener('click', ()=>{
     }
         
 })
+
+window.addEventListener("keydown", e => {
+
+    if(parseInt(e.key) >= 0 && parseInt(e.key) <= 9){
+
+        display.innerText += e.key;
+    
+    console.log(parseInt(e.key))
+
+    }
+});
+  
 
 
 
