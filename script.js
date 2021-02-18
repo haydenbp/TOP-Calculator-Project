@@ -62,11 +62,19 @@ const display = document.getElementById('display');
 
 const operatorButtons = document.querySelectorAll('.operator');
 
+const decimalButton = document.getElementById('decimal')
+
 let operator = null;
 
 let number = null;
 
+let displayText = null
+
 clearButton.addEventListener('click', ()=>{
+
+    number = null
+
+    numberTwo = null
 
     display.innerText = '';
 
@@ -78,32 +86,46 @@ numberButtons.forEach(item => item.addEventListener('click',()=>{
 
     display.innerText += item.innerText;
     //number = parseInt(display.innerText)
-    console.log(number);
 }
 
 ))
 
+decimalButton.addEventListener('click', ()=>{
+
+    if(display.innerText.includes('.') == false){
+
+        display.innerText += decimalButton.innerText;
+    }
+
+
+}
+
+)
+
 operatorButtons.forEach(item => item.addEventListener('click',()=>{
 
     operator = item.innerText
-    number = parseInt(display.innerText)
+    number = display.innerText
     display.innerText = ''
-    console.log(operator);
+    console.log(number);
 }
 
 ))
 
 equalButton.addEventListener('click', ()=>{
 
-    let numberTwo = parseInt(display.innerText)
+    if(number !== null || numberTwo !== null){
+
+    
+
+    let numberTwo = display.innerText
 
     console.log(operator,number,numberTwo);
 
-    display.innerText = `${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
-    console.log(display.innerText);
-
+    display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo))//`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
+    }
+        
 })
 
 
 
-console.log(operatorButtons)
