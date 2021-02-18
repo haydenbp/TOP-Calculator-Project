@@ -64,6 +64,8 @@ const operatorButtons = document.querySelectorAll('.operator');
 
 const decimalButton = document.getElementById('decimal')
 
+const delButton = document.getElementById('delete')
+
 let operator = null;
 
 let number = null;
@@ -80,6 +82,12 @@ clearButton.addEventListener('click', ()=>{
 
 })
 
+delButton.addEventListener('click', ()=>{
+
+    display.innerText = display.innerText.slice(0,-1)
+
+
+})
 
 
 numberButtons.forEach(item => item.addEventListener('click',()=>{
@@ -122,7 +130,13 @@ equalButton.addEventListener('click', ()=>{
 
     console.log(operator,number,numberTwo);
 
-    display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo))//`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
+    if(operator == '/' && numberTwo != 0){
+
+    display.innerText = operate(operator,parseFloat(number),parseFloat(numberTwo)).toFixed(2)//`${number} ${operator} ${numberTwo} = ${operate(operator,number,numberTwo)}`
+    }
+    else{
+        alert('REEEE YOU CANT DIVIDE BY ZERO')
+    }
     }
         
 })
